@@ -47,7 +47,7 @@ public class DSAGraphVertex {
     public void setLinks(DSALinkedList newList) {
         m_edges = newList;
     }
-    
+
     public void clearVisited() {
         m_visited = false;
     }
@@ -55,5 +55,10 @@ public class DSAGraphVertex {
     public void addEdge(DSAGraphVertex vertex) {
         m_edges.insertLast(vertex);
         m_edgeCount++;
+    }
+
+    public void removeEdge(DSAGraphVertex vertex) {
+        m_edges.remove(vertex);
+        m_edgeCount--;
     }
 }

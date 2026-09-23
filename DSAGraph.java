@@ -75,6 +75,18 @@ public class DSAGraph{
         m_vertices.insertLast(newVertex); // put it in the linkedlist
     }
 
+    public void deleteVertex(String label) {
+        DSAGraphVertex target = getVertex(label);
+
+        checkVertex(target, label);
+        m_vertices.remove(target); // remove from vertices
+
+        for(Object vert : m_vertices) {
+            DSAGraphVertex temp = (DSAGraphVertex) vert;
+            temp.getAdjacent().remove(target); // remove from adjacency list
+        }       
+    }
+
     public void addEdge(String label1, String label2) {
         DSAGraphVertex vertexOne = getVertex(label1);
         DSAGraphVertex vertexTwo = getVertex(label2);
@@ -84,6 +96,17 @@ public class DSAGraph{
 
         vertexOne.addEdge(vertexTwo); // undirected graph = add each other
         vertexTwo.addEdge(vertexOne);       
+    }
+
+    public void deleteEdge(String label1, String label2) {
+        DSAGraphVertex vertexOne = getVertex(label1);
+        DSAGraphVertex vertexTwo = getVertex(label2);
+
+        checkVertex(vertexOne, label1);
+        checkVertex(vertexTwo, label2);
+
+        vertexOne.removeEdge(vertexTwo);
+        vertexTwo.removeEdge(vertexOne);
     }
 
     public void checkVertex(DSAGraphVertex vert, String label) {

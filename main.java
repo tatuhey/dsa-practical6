@@ -78,18 +78,55 @@ public class main{
 
         System.out.println("Remove a vertex below. Format is <vertex>");
         String input = sc.nextLine();
+
+        try {
+            graph.deleteVertex(input);
+            System.out.println("Vertex " + input + " deleted");
+        } catch (NoSuchElementException e) {   
+            System.out.println(e + ". Try again");
+        }
     }
 
     public static void addEdge(Scanner sc, DSAGraph graph) {
-        
+        sc.nextLine(); // to clear the leftover newline from the previous menu choice
+
+        System.out.println("Add an edge to a vertex below. Format is <vertex,edge>");
+        String input = sc.nextLine();
+
+        String[] arr = input.split(",");
+        if(arr.length != 2) {
+            System.out.println("Invalid format. Format is <vertex,edge>");
+            return;
+        }
+        try {
+            graph.addEdge(arr[0].trim(), arr[1].trim()); // trim() to remove whitespaces around
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + ". Try again");
+        }
+
     }
     
     public static void delEdge(Scanner sc, DSAGraph graph) {
-        
+        sc.nextLine(); // to clear the leftover newline from the previous menu choice
+
+        System.out.println("Delete an edge to a vertex below. Format is <vertex,edge>");
+        String input = sc.nextLine();
+
+        String[] arr = input.split(",");
+        if(arr.length != 2) {
+            System.out.println("Invalid format. Format is <vertex,edge>");
+            return;
+        }
+        try {
+            graph.deleteEdge(arr[0].trim(), arr[1].trim()); // trim() to remove whitespaces around
+        } catch (IllegalArgumentException e) {
+            System.out.println(e + ". Try again");
+        }
     }
     
     public static void dispAsList(Scanner sc, DSAGraph graph) {
-        
+        graph.sort();
+        graph.displayAsList();
     }
     
     public static void dispAsMatrix(Scanner sc, DSAGraph graph) {
