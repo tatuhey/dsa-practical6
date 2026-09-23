@@ -135,8 +135,7 @@ public class main{
     }
     
     public static void bfs(Scanner sc, DSAGraph graph) {
-        
-        
+        graph.dispBfs(graph);
     }
     
     public static void dfs(Scanner sc, DSAGraph graph) {

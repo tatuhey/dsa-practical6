@@ -1,3 +1,4 @@
+import java.security.spec.DSAGenParameterSpec;
 import java.util.*;
 
 public class DSAGraph{
@@ -257,11 +258,26 @@ public class DSAGraph{
             DSAGraphVertex v = (DSAGraphVertex) bfs.dequeue();
             DSAGraphVertex w = (DSAGraphVertex) bfs.dequeue();
 
-            System.out.println("(" + v.getLabel() + ", " + w.getLabel() + ")");
+            System.out.print("(" + v.getLabel() + ", " + w.getLabel() + ")");
 
         }
         System.out.print("}");
+        System.out.println("");
             
+    }
+
+    private DSAGraphVertex unvisitedAdjacent(DSAGraphVertex v) {
+        for (Object adj : v.getAdjacent()) {
+            DSAGraphVertex w = (DSAGraphVertex) adj;
+            if (!w.getVisited()) {
+                return w;
+            }
+        }
+        return null;
+    }
+
+    public DSAQueue depthFirstSearch() {
+        
     }
 
 }
