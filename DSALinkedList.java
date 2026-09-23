@@ -1,4 +1,6 @@
-public class DSALinkedList {
+import java.util.*;
+
+public class DSALinkedList implements Iterable<Object> {
     private DSAListNode head;
     private DSAListNode tail; // double-ended lists
 
@@ -24,6 +26,11 @@ public class DSALinkedList {
             throw new IllegalStateException("Node is empty");
         else 
             return tail.getValue();
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new DSALinkedListIterator();
     }
 
     // mutator
@@ -98,6 +105,32 @@ public class DSALinkedList {
                 System.out.print(" ");
             }
             System.out.println("");
+        }
+    }
+
+    // Custom iterator
+    // https://www.geeksforgeeks.org/java/java-implementing-iterator-and-iterable-interface/
+    // https://www.baeldung.com/java-creating-custom-iterator
+    private class DSALinkedListIterator implements Iterator<Object> {
+        private DSAListNode currNd;
+        public DSALinkedListIterator() {
+            currNd = head;
+        }
+        
+        @Override 
+        public boolean hasNext() {
+            return currNd != null; // returns true if next exists
+        }
+
+        @Override 
+        public Object next() {
+            if(!hasNext()) {
+                throw new NoSuchElementException("Next element does not exist");
+            } else {
+                Object data = currNd.getValue(); // get current value
+                currNd = currNd.getNext();  // move pointer to next
+                return data;
+            }
         }
     }
 
