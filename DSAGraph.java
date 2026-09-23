@@ -24,7 +24,16 @@ public class DSAGraph{
     }
 
     public DSAGraphVertex getVertex(String label) {
-        
+        DSAGraphVertex targetVertex = null;
+        DSAGraphVertex temp = null;
+
+        for (Object elem : m_vertices) {
+            temp = (DSAGraphVertex) elem; // casting elem inside m_vertices to be DSAGraphVertex to allow to set value to temp;
+            if(temp.getLabel().equals(label)) { // if temp has label looked for
+                targetVertex = temp;
+            } 
+        }
+        return targetVertex;
     }
 
     public DSALinkedList getAdjacent(String label) {
@@ -46,12 +55,18 @@ public class DSAGraph{
 
     // mutator
     public void addVertex(Object value, String label) {
-        DSAGraphVertex newVertex = new DSAGraphVertex(value, label);
-        m_vertices.insertLast(newVertex);
+        DSAGraphVertex newVertex = new DSAGraphVertex(value, label); // create new vertex
+        m_vertices.insertLast(newVertex); // put it in the linkedlist
     }
 
     public void addEdge(String label1, String label2) {
-        DSAGraphVertex vertex = 
+        DSAGraphVertex vertexOne = getVertex(label1);
+        DSAGraphVertex vertexTwo = getVertex(label2);
+
+        if(vertexOne == null || vertexTwo == null) {
+            throw new NoSuchElementException
+        }
+        
     }
 
 
