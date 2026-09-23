@@ -114,27 +114,56 @@ public class DSAGraph{
             throw new NoSuchElementException("Vertex " + label + " does not exist");
     }
 
-    public void displayAsList() { // sort first then display
+    public void displayAsList() {
+        sort(); // sort first then display
         DSAGraphVertex vert = null;
         DSAGraphVertex adjVert = null;
 
-        for(Object rowVert : m_vertices) { // columns at top
-            vert = (DSAGraphVertex) rowVert;
+
+        for(Object listVert : m_vertices) { // columns at top
+            vert = (DSAGraphVertex) listVert;
 
             System.out.print(vert.getLabel() + ": ");
-        }
-        System.out.println("");
-        for(Object listVert : m_vertices) {
-            vert = (DSAGraphVertex) listVert;
-            
+
             for(Object listAdj : vert.getAdjacent()) {
                 adjVert = (DSAGraphVertex) listAdj;
                 System.out.print(adjVert.getLabel() + " ");
             }
+            System.out.println("");
         }
     }
 
     public void displayAsMatrix() {
+        sort();
+        DSAGraphVertex vert = null;
+        DSAGraphVertex adjVert = null;
+
+        // for the column start
+        System.out.print("  ");
+        for(Object topRowVert : m_vertices) {
+            vert = (DSAGraphVertex) topRowVert;
+            System.out.print(vert.getLabel() + " ");
+        }
+        System.out.println("");
+        for(Object rowItem : m_vertices) {
+            DSAGraphVertex rowVert = (DSAGraphVertex) rowItem;
+            
+            // Print the row label
+            System.out.print(rowVert.getLabel() + " "); 
+
+            // Check adjacency for each column
+            for(Object colItem : m_vertices) {
+                DSAGraphVertex colVert = (DSAGraphVertex) colItem;
+                
+                // If the column vertex is adjacent to the row vertex, print 1
+                if (isAdjacent(rowVert.getLabel(), colVert.getLabel())) {
+                    System.out.print("1 ");
+                } else {
+                    System.out.print("0 ");
+                }
+            }
+            System.out.println(); // Move to the next row
+        }
 
     }
 

@@ -10,7 +10,7 @@ public class main{
 
         while(sel != 0) {
             System.out.println("Select menu:");
-            System.out.println("1. Add vertex\n2. Delete vertex\3. Add edge\n4. Delete edge\n5. displayAsList()\n6. displayAsMatrix()\n7. Breadth first search\n8. Depth first search\n0. Exit");
+            System.out.println("1. Add vertex\n2. Delete vertex\n3. Add edge\n4. Delete edge\n5. displayAsList()\n6. displayAsMatrix()\n7. Breadth first search\n8. Depth first search\n0. Exit");
             
             try {
                 sel = sc.nextInt();
@@ -125,15 +125,17 @@ public class main{
     }
     
     public static void dispAsList(Scanner sc, DSAGraph graph) {
-        graph.sort();
+        System.out.println("Adjacency List:");
         graph.displayAsList();
     }
     
     public static void dispAsMatrix(Scanner sc, DSAGraph graph) {
-        
+        System.out.println("Adjacency Matrix:");
+        graph.displayAsMatrix();
     }
     
     public static void bfs(Scanner sc, DSAGraph graph) {
+        
         
     }
     
