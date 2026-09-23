@@ -44,6 +44,10 @@ public class DSAGraphVertex {
         m_visited = true;
     }
 
+    public void setLinks(DSALinkedList newList) {
+        m_edges = newList;
+    }
+    
     public void clearVisited() {
         m_visited = false;
     }
