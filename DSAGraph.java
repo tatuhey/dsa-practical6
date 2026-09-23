@@ -213,4 +213,55 @@ public class DSAGraph{
             }
         }
     }
+
+    public DSAQueue breadthFirstSearch() {
+        DSAQueue t = new DSAQueue();
+        DSAQueue q = new DSAQueue();
+
+        if(m_vertices.isEmpty())
+            return t; 
+
+        for(Object vert : m_vertices) {
+            DSAGraphVertex temp = (DSAGraphVertex) vert;
+            temp.clearVisited();
+        }
+        DSAGraphVertex v = (DSAGraphVertex) m_vertices.peekFirst();
+        v.setVisited();
+        q.enqueue(v);
+        while(!q.isEmpty()) {
+            v = (DSAGraphVertex) q.dequeue();
+            for(Object adj : v.getAdjacent()) {
+                DSAGraphVertex w = (DSAGraphVertex) adj;
+                if(!w.getVisited()) {
+                    t.enqueue(v);
+                    t.enqueue(w);
+                    w.setVisited();
+                    q.enqueue(w);
+                }
+            }
+        }
+        return t;
+    }
+
+    public static void dispBfs(DSAGraph vert) {
+        DSAQueue bfs = vert.breadthFirstSearch();
+
+        if(bfs.isEmpty()) {
+            System.out.println("The graph is empty");
+            return;
+        }
+
+        System.out.print("BFS tree: {");
+
+        while(!bfs.isEmpty()) {
+            DSAGraphVertex v = (DSAGraphVertex) bfs.dequeue();
+            DSAGraphVertex w = (DSAGraphVertex) bfs.dequeue();
+
+            System.out.println("(" + v.getLabel() + ", " + w.getLabel() + ")");
+
+        }
+        System.out.print("}");
+            
+    }
+
 }
