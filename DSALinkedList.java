@@ -93,6 +93,31 @@ public class DSALinkedList implements Iterable<Object> {
             return nodeValue;
         }
     }
+
+    public Object remove(Object inValue) {
+        if(isEmpty())
+            return null;
+        
+        DSAListNode currNd = head;
+
+        while(currNd != null) {
+            if(currNd.getValue().equals(inValue)) {
+                if (currNd == head)
+                    return removeFirst();
+
+                else if (currNd == tail)
+                    return removeLast();
+                
+                else {
+                    currNd.getPrev().setNext(currNd.getNext());
+                    currNd.getNext().setPrev(currNd.getPrev());
+                    return currNd.getValue();
+                }
+            }
+            currNd = currNd.getNext();
+        }
+        return null; // value not found
+    }
     
     public void display() {
         if (isEmpty())
