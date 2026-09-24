@@ -26,7 +26,7 @@ This project features a custom Java implementation of an undirected Graph data s
 * `DSALinkedList.java` *(provided as DSALinkedList_2.java)*: A custom doubly linked list implementation (with an Iterator) used as the backbone for storing vertices and adjacency lists.
 * `DSAQueue.java` & `DSAStack.java`: Custom data structures wrapping the linked list, used specifically for the BFS and DFS algorithms.
 * `main.java` *(provided as main_3.java)*: The interactive test harness and menu CLI.
-* `.gitignore_4`: Ignores compiled `.class` files.
+* `.gitignore`: Ignores compiled `.class` files.
 
 ## How to Run
 
