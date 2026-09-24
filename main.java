@@ -139,7 +139,7 @@ public class main{
     }
     
     public static void dfs(Scanner sc, DSAGraph graph) {
-        
+        graph.dispDfs(graph);
     }
 
 }

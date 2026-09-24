@@ -277,7 +277,54 @@ public class DSAGraph{
     }
 
     public DSAQueue depthFirstSearch() {
-        
+        DSAQueue t = new DSAQueue();
+        DSAStack s = new DSAStack();
+
+        if(m_vertices.isEmpty())
+            return t;
+
+        for(Object vert : m_vertices) {
+            DSAGraphVertex temp = (DSAGraphVertex) vert;
+            temp.clearVisited();
+        }
+        DSAGraphVertex v =(DSAGraphVertex) m_vertices.peekFirst();
+        v.setVisited();
+        s.push(v);
+        while(!s.isEmpty()) {
+            DSAGraphVertex x = unvisitedAdjacent(v);
+            while(w != null) {
+                t.enqueue(v);
+                t.enqueue(w);
+                w.setVisited();
+                s.push(w);
+                v = w;
+                w = unvisitedAdjacent(v);
+            }
+            v = (DSAGraphVertex) s.pop();
+        }
+        return t;
+    }
+
+    public static void dispDfs(DSAGraph vert) {
+        DSAQueue dfs = vert.depthFirstSearch();
+
+        if(dfs.isEmpty()) {
+            System.out.println("The graph is empty");
+            return;
+        }
+
+        System.out.print("DFS tree: {");
+
+        while(!dfs.isEmpty()) {
+            DSAGraphVertex v = (DSAGraphVertex) dfs.dequeue();
+            DSAGraphVertex w = (DSAGraphVertex) dfs.dequeue();
+
+            System.out.print("(" + v.getLabel() + ", " + w.getLabel() + ")");
+
+        }
+        System.out.print("}");
+        System.out.println("");
+            
     }
 
 }
