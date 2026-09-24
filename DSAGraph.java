@@ -7,7 +7,7 @@ public class DSAGraph{
         m_vertices = new DSALinkedList();
     }
 
-    // accessor
+    //region accessor
     public boolean hasVertex(String label){
         boolean result = false;
 
@@ -69,10 +69,12 @@ public class DSAGraph{
         return result;
     }
 
-    // mutator
+    //endregion
+
+    //region mutator
     public void addVertex(Object value, String label) { // add node
         DSAGraphVertex newVertex = new DSAGraphVertex(value, label); // create new vertex
-        m_vertices.insertLast(newVertex); // put it in the linkedlist
+        m_vertices.insertLast(newVertex); // put vertex in the linkedlist
     }
 
     public void deleteVertex(String label) {
@@ -81,9 +83,9 @@ public class DSAGraph{
         checkVertex(target, label);
         m_vertices.remove(target); // remove from vertices
 
-        for(Object vert : m_vertices) {
+        for(Object vert : m_vertices) { // for all vertex in the linked list
             DSAGraphVertex temp = (DSAGraphVertex) vert;
-            temp.getAdjacent().remove(target); // remove from adjacency list
+            temp.getAdjacent().remove(target); // remove all adjacent from vertex
         }       
     }
 
@@ -91,7 +93,7 @@ public class DSAGraph{
         DSAGraphVertex vertexOne = getVertex(label1);
         DSAGraphVertex vertexTwo = getVertex(label2);
 
-        checkVertex(vertexOne, label1);
+        checkVertex(vertexOne, label1); // check if each vert exists
         checkVertex(vertexTwo, label2);
 
         vertexOne.addEdge(vertexTwo); // undirected graph = add each other
@@ -105,7 +107,7 @@ public class DSAGraph{
         checkVertex(vertexOne, label1);
         checkVertex(vertexTwo, label2);
 
-        vertexOne.removeEdge(vertexTwo);
+        vertexOne.removeEdge(vertexTwo); // undirected graph, delete each other
         vertexTwo.removeEdge(vertexOne);
     }
 
@@ -120,14 +122,14 @@ public class DSAGraph{
         DSAGraphVertex adjVert = null;
 
 
-        for(Object listVert : m_vertices) { // columns at top
+        for(Object listVert : m_vertices) { // for all vertices
             vert = (DSAGraphVertex) listVert;
 
-            System.out.print(vert.getLabel() + ": ");
+            System.out.print(vert.getLabel() + ": "); // print the labels
 
-            for(Object listAdj : vert.getAdjacent()) {
-                adjVert = (DSAGraphVertex) listAdj;
-                System.out.print(adjVert.getLabel() + " ");
+            for(Object listAdj : vert.getAdjacent()) { // for all adjacent vertices
+                adjVert = (DSAGraphVertex) listAdj; 
+                System.out.print(adjVert.getLabel() + " "); // print all the labels
             }
             System.out.println("");
         }
@@ -140,24 +142,21 @@ public class DSAGraph{
 
         // for the column start
         System.out.print("  ");
-        for(Object topRowVert : m_vertices) {
+        for(Object topRowVert : m_vertices) { // for all vertices
             vert = (DSAGraphVertex) topRowVert;
-            System.out.print(vert.getLabel() + " ");
+            System.out.print(vert.getLabel() + " "); // print all label as top row, vertex
         }
         System.out.println("");
-        for(Object rowItem : m_vertices) {
+        for(Object rowItem : m_vertices) { // for each row afterwards
             DSAGraphVertex rowVert = (DSAGraphVertex) rowItem;
             
-            // Print the row label
-            System.out.print(rowVert.getLabel() + " "); 
+            System.out.print(rowVert.getLabel() + " ");  // print first column, vertex
 
-            // Check adjacency for each column
-            for(Object colItem : m_vertices) {
+            for(Object colItem : m_vertices) { // for each row items, after the first column
                 DSAGraphVertex colVert = (DSAGraphVertex) colItem;
                 
-                // If the column vertex is adjacent to the row vertex, print 1
                 if (isAdjacent(rowVert.getLabel(), colVert.getLabel())) {
-                    System.out.print("1 ");
+                    System.out.print("1 "); // if the column match with row, print 1
                 } else {
                     System.out.print("0 ");
                 }
@@ -325,5 +324,7 @@ public class DSAGraph{
         System.out.println("");
             
     }
+
+    //endregion
 
 }
