@@ -170,9 +170,9 @@ public class DSAGraph{
         m_vertices = sortVertexList(m_vertices); // sort main vertex list
         DSAGraphVertex temp = null;
 
-        for(Object vert : m_vertices) {
+        for(Object vert : m_vertices) { // for all vertices already sorted
             temp = (DSAGraphVertex) vert;
-            DSALinkedList sortedAdjList = sortVertexList(temp.getAdjacent());
+            DSALinkedList sortedAdjList = sortVertexList(temp.getAdjacent()); // sort its adjacent vertex list
             temp.setLinks(sortedAdjList);
         }
     }
@@ -181,20 +181,20 @@ public class DSAGraph{
         int count = 0;
         int i = 0;
 
-        for(Object vert : vertList)
+        for(Object vert : vertList) // loop through all vertices to get its count number for insertion sort
             count++;
 
-        DSAGraphVertex[] vertArr = new DSAGraphVertex[count];
+        DSAGraphVertex[] vertArr = new DSAGraphVertex[count]; // create array size count vfor insertion sort
 
-        for(Object vert : vertList) {
+        for(Object vert : vertList) { // loop through all vertices to put them into the array
             vertArr[i] = (DSAGraphVertex) vert;
             i++;
         }
 
-        vertexInsertSort(vertArr, count);
+        vertexInsertSort(vertArr, count); // call insertion sort
         DSALinkedList sortedLinkedList = new DSALinkedList();
 
-        for(int j = 0; j < count; j++)
+        for(int j = 0; j < count; j++) // add the newly sorted array to a sorted linked list
             sortedLinkedList.insertLast(vertArr[j]);
 
         return sortedLinkedList;
@@ -243,7 +243,7 @@ public class DSAGraph{
     }
 
     public static void dispBfs(DSAGraph vert) {
-        DSAQueue bfs = vert.breadthFirstSearch();
+        DSAQueue bfs = vert.breadthFirstSearch(); // do bfs
 
         if(bfs.isEmpty()) {
             System.out.println("The graph is empty");
@@ -252,11 +252,11 @@ public class DSAGraph{
 
         System.out.print("BFS : {");
 
-        while(!bfs.isEmpty()) {
-            DSAGraphVertex v = (DSAGraphVertex) bfs.dequeue();
-            DSAGraphVertex w = (DSAGraphVertex) bfs.dequeue();
+        while(!bfs.isEmpty()) { // while looping through the queue of bfs'ed vertcies
+            DSAGraphVertex v = (DSAGraphVertex) bfs.dequeue(); // dequeue 1
+            DSAGraphVertex w = (DSAGraphVertex) bfs.dequeue(); // dequeue 2
 
-            System.out.print("(" + v.getLabel() + ", " + w.getLabel() + ")");
+            System.out.print("(" + v.getLabel() + ", " + w.getLabel() + ")"); // print 1 then 2
 
         }
         System.out.print("}");
@@ -264,7 +264,7 @@ public class DSAGraph{
             
     }
 
-    private DSAGraphVertex unvisitedAdjacent(DSAGraphVertex v) {
+    private DSAGraphVertex unvisitedAdjacent(DSAGraphVertex v) { // helper method to return w as the unvisidted vertex
         for (Object adj : v.getAdjacent()) {
             DSAGraphVertex w = (DSAGraphVertex) adj;
             if (!w.getVisited()) {
