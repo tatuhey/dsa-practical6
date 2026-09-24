@@ -94,7 +94,7 @@ public class DSALinkedList implements Iterable<Object> {
         }
     }
 
-    public Object remove(Object inValue) {
+    public Object remove(Object inValue) { // added to add the ability to remove directly rather than through iteration
         if(isEmpty())
             return null;
         

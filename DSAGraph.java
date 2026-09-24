@@ -70,7 +70,7 @@ public class DSAGraph{
     }
 
     // mutator
-    public void addVertex(Object value, String label) {
+    public void addVertex(Object value, String label) { // add node
         DSAGraphVertex newVertex = new DSAGraphVertex(value, label); // create new vertex
         m_vertices.insertLast(newVertex); // put it in the linkedlist
     }
@@ -87,7 +87,7 @@ public class DSAGraph{
         }       
     }
 
-    public void addEdge(String label1, String label2) {
+    public void addEdge(String label1, String label2) { 
         DSAGraphVertex vertexOne = getVertex(label1);
         DSAGraphVertex vertexTwo = getVertex(label2);
 
@@ -167,7 +167,7 @@ public class DSAGraph{
 
     }
 
-    public void sort() {
+    private void sort() {
         m_vertices = sortVertexList(m_vertices); // sort main vertex list
         DSAGraphVertex temp = null;
 
@@ -214,7 +214,7 @@ public class DSAGraph{
         }
     }
 
-    public DSAQueue breadthFirstSearch() {
+    private DSAQueue breadthFirstSearch() {
         DSAQueue t = new DSAQueue();
         DSAQueue q = new DSAQueue();
 
@@ -251,7 +251,7 @@ public class DSAGraph{
             return;
         }
 
-        System.out.print("BFS tree: {");
+        System.out.print("BFS : {");
 
         while(!bfs.isEmpty()) {
             DSAGraphVertex v = (DSAGraphVertex) bfs.dequeue();
@@ -275,7 +275,7 @@ public class DSAGraph{
         return null;
     }
 
-    public DSAQueue depthFirstSearch() {
+    private DSAQueue depthFirstSearch() {
         DSAQueue t = new DSAQueue();
         DSAStack s = new DSAStack();
 
@@ -312,7 +312,7 @@ public class DSAGraph{
             return;
         }
 
-        System.out.print("DFS tree: {");
+        System.out.print("DFS : {");
 
         while(!dfs.isEmpty()) {
             DSAGraphVertex v = (DSAGraphVertex) dfs.dequeue();
