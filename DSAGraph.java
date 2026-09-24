@@ -1,4 +1,3 @@
-import java.security.spec.DSAGenParameterSpec;
 import java.util.*;
 
 public class DSAGraph{
@@ -291,7 +290,7 @@ public class DSAGraph{
         v.setVisited();
         s.push(v);
         while(!s.isEmpty()) {
-            DSAGraphVertex x = unvisitedAdjacent(v);
+            DSAGraphVertex w = unvisitedAdjacent(v);
             while(w != null) {
                 t.enqueue(v);
                 t.enqueue(w);
